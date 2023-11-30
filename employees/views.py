@@ -2,6 +2,11 @@ from django.shortcuts import render
 from .models import Employee
 from .services import EmployeeServices
 
+from rest_framework import generics
+from rest_framework.response import Response
+
+from .serializers import EmployeeSerializer
+
 # Create your views here.
 def employee_list(request):
     employees = Employee.objects.all()
