@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Empleados</title>
+</head>
+<body>
+
+    <div class="container">
+        <h1> Edit Employee </h1>
+        <div class="row">
+            <div class="col">
+                <form action="{% url 'edit_employee' employee.id %}" method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit"> Guardar Cambios </button>
+                </form>
+                <a href="{% url 'employee_list' %}"> Regregsar a la lista </a>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
