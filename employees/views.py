@@ -1,11 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Employee
 from .services import EmployeeServices
-
-from rest_framework import generics
-from rest_framework.response import Response
-
-from .serializers import EmployeeSerializer
+from .forms import EmployeeForm
 
 # Create your views here.
 def employee_list(request):
@@ -15,3 +11,14 @@ def employee_list(request):
     
     context = {'empleados':zip(employees,bonuses)}
     return render(request, 'employees/employee_list.html', context)
+
+def add_employee(request):
+    if request.method == 'POST':
+        form = EmployeeForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('employee_list')
+    else:
+        form = EmployeeForm()
+        
+    return render(request, 'employees/add_employee.html', {'form':form})

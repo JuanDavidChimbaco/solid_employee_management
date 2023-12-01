@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Empleado</title>
+</head>
+<body>
+    <div class="container">
+        <h1> Agregar Empleados</h1>
+        <div class="row">
+            <div class="col">
+                <form method="post" action="{% url 'add_employee' %}">
+                    {% csrf_token %}
+                    {{ form.as_p}}
+                    <button type="submit"> Agregar </button>
+                </form>
+                <a href="{% url 'employee_list' %}">Regresar a lista de empleados</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
